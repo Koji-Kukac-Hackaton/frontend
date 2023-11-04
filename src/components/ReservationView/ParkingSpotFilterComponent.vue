@@ -100,7 +100,7 @@ export default {
     this.valueDistance = this.filterDistance
   },
   methods: {
-    filter() {
+    async filter() {
       const filters = {
         price: this.valuePrice,
         freeSpace: this.freeSpace,
@@ -109,6 +109,7 @@ export default {
       }
 
       this.$store.commit('setFilters', filters)
+      this.$store.dispatch('fetchParkingSpots')
     }
   }
 }

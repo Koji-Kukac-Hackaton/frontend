@@ -64,6 +64,9 @@ export default {
           lng: spot.longitude
         }
       }))
+    },
+    parkingZonePrices() {
+      return this.$store.getters.getParkingZonePrices
     }
   },
   data() {
@@ -87,7 +90,9 @@ export default {
       this.openedMarkerID = id
     }
   },
-  async mounted() {},
+  async created() {
+    await this.$store.dispatch('fetchParkingZonePrices')
+  },
   components: { NButton }
 }
 </script>

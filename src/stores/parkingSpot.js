@@ -2,6 +2,8 @@ export const parkingSpotsModule = {
   state: {
     parkingSpots: [],
 
+    parkingZonePrices: {},
+
     //filters
     filterPrice: 0,
     filterFreeSpace: false,
@@ -11,6 +13,8 @@ export const parkingSpotsModule = {
   getters: {
     allParkingSpots: (state) => state.parkingSpots,
 
+    getParkingZonePrices: (state) => state.parkingZonePrices,
+
     getFilterPrice: (state) => state.filterPrice,
     getFilterFreeSpace: (state) => state.filterFreeSpace,
     getFilterZone: (state) => state.filterZone,
@@ -19,6 +23,9 @@ export const parkingSpotsModule = {
   mutations: {
     setParkingSpots(state, parkingSpots) {
       state.parkingSpots = parkingSpots
+    },
+    setParkingZonePrices(state, parkingZonePrices) {
+      state.parkingZonePrices = parkingZonePrices
     },
     setFilters(state, filters) {
       state.filterPrice = filters.price
@@ -6003,7 +6010,22 @@ export const parkingSpotsModule = {
       if (state.filterFreeSpace) {
         parkingSpots = parkingSpots.filter((spot) => !spot.occupied)
       }
+
+      if (state.filterZone) {
+        parkingSpots = parkingSpots.filter((spot) => spot.parkingSpotZone === state.filterZone)
+      }
       commit('setParkingSpots', parkingSpots)
+    },
+    async fetchParkingZonePrices({ commit }) {
+      let parkingZonePrices = { ZONE1: 4.25, ZONE2: 3.34, ZONE3: 2.25, ZONE4: 1.31 }
+
+      let updatedParkingZonePrices = Object.keys(parkingZonePrices).reduce((newObj, key) => {
+        const newKey = key.charAt(0) + key.slice(1).toLowerCase()
+        newObj[newKey] = parkingZonePrices[key]
+        return newObj
+      }, {})
+
+      commit('setParkingZonePrices', updatedParkingZonePrices)
     }
   }
 }

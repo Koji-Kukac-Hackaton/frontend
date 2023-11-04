@@ -23,11 +23,11 @@
   border-radius: 8px;
 }
 
-.n-slider{
-    --n-fill-color: #4470c8 !important;
-    --n-fill-color-hover: #4470c8 !important;
+.n-slider {
+  --n-fill-color: #4470c8 !important;
+  --n-fill-color-hover: #4470c8 !important;
 }
 
-.n-switch__rail{
-    --n-rail-color-active: #4470c8 !important;
+.n-switch__rail {
+  --n-rail-color-active: #4470c8 !important;
 }
