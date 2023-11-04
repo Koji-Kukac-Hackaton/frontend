@@ -4,7 +4,7 @@
       <div>
         <NSpace>
           <NText>Show only free spaces</NText>
-          <NSwitch :color="black" v-model:value="freeSpace" />
+          <NSwitch :color="black" v-model:value="freeSpace"   />
         </NSpace>
       </div>
       <div>
@@ -16,7 +16,7 @@
       <div>
         <NSpace vertical>
           <NText>Price</NText>
-          <NSlider v-model:value="valuePrice" :step="1" />
+          <NSlider v-model:value="valuePrice" :step="0.5" :max="5" />
         </NSpace>
       </div>
       <div>
@@ -87,7 +87,7 @@ export default {
   data() {
     return {
       valueDistance: [0],
-      valuePrice: [0],
+      valuePrice: [0,5],
       freeSpace: false,
 
       pickedZone: 0

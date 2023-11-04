@@ -32,7 +32,7 @@
       >
         <div>
           <p>Vodnikova ulica 10</p>
-          <p>3.2€</p>
+          <p>{{parkingZonePrices[m.parkingSpotZone]}}€</p>
           <NButton>Reserve</NButton>
         </div>
       </GMapInfoWindow>
@@ -59,6 +59,7 @@ export default {
       return this.parkingSpots.map((spot) => ({
         id: spot.id,
         occupied: spot.occupied,
+        parkingSpotZone: spot.parkingSpotZone,
         position: {
           lat: spot.latitude,
           lng: spot.longitude
