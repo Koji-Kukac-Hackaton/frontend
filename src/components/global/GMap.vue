@@ -56,7 +56,7 @@ export default {
   },
   computed: {
     markers() {
-        return this.parkingSpots.map((spot) => ({
+      return this.parkingSpots.map((spot) => ({
         id: spot.id,
         occupied: spot.occupied,
         position: {
@@ -64,7 +64,7 @@ export default {
           lng: spot.longitude
         }
       }))
-    },
+    }
   },
   data() {
     return {
@@ -73,7 +73,7 @@ export default {
       redCircle: redCircle,
       greenCircle: greenCircle,
       blueCircle: blueCircle,
-      nav: navigator.geolocation.getCurrentPosition(this.successLocation),
+      nav: navigator.geolocation.getCurrentPosition(this.successLocation)
     }
   },
   methods: {

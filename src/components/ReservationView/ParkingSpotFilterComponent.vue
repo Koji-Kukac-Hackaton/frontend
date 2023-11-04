@@ -2,22 +2,21 @@
   <NCard>
     <div class="filter-grid">
       <div>
-        <NSpace >
+        <NSpace>
           <NText>Show only free spaces</NText>
           <NSwitch v-model:value="active" />
-
         </NSpace>
       </div>
       <div>
         <NSpace vertical>
           <NText>Distance</NText>
-          <NSlider v-model:value="valueDistance" range :step="1" />
+          <NSlider v-model:value="valueDistance" :step="1" />
         </NSpace>
       </div>
       <div>
         <NSpace vertical>
           <NText>Price</NText>
-          <NSlider v-model:value="valuePrice" range :step="1" />
+          <NSlider v-model:value="valuePrice" :step="1" />
         </NSpace>
       </div>
       <div>
@@ -46,12 +45,12 @@ export default {
     NSlider,
     NButton,
     NSwitch
-},
+  },
   computed: {},
   data() {
     return {
-      valueDistance: [0, 100],
-      valuePrice: [0, 100],
+      valueDistance: [0],
+      valuePrice: [0],
       active: false
     }
   }
@@ -59,12 +58,10 @@ export default {
 </script>
 
 <style>
-.filter-grid{
+.filter-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0px, 1fr));
   width: 100%;
   gap: 8px;
 }
-
-
 </style>

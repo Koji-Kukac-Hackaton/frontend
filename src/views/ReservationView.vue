@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="card-container">
-        <ParkingSpotComponent></ParkingSpotComponent>
+      <ParkingSpotComponent></ParkingSpotComponent>
     </div>
   </div>
 </template>
@@ -16,6 +16,4 @@ export default {
 }
 </script>
 
-<style>
-
-</style>
+<style></style>

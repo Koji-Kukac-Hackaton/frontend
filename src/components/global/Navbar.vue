@@ -3,14 +3,13 @@
     <RouterLink class="navbar-title" to="/">ParkingSpotter</RouterLink>
 
     <div class="navbar-end">
-      <!-- COMMENT -->
       <NSpace class="flex-row" :size="[30, 0]">
         <RouterLink
           class="navbar-route"
           :to="{
             name: 'reserve'
           }"
-          >routeName</RouterLink
+          >Home</RouterLink
         >
 
         <RouterLink
@@ -18,22 +17,16 @@
           :to="{
             name: 'reserve'
           }"
-          >routeName</RouterLink
+          >Reserve Parking</RouterLink
         >
 
-        <!-- NOT LOGGED IN -->
-        <button class="navbar-route" @click="$router.push({ name: 'reserve' })">routeName</button>
-
-        <button
+        <RouterLink
           class="navbar-route"
-          @click="$router.push({ name: 'reserve' })"
-          color="green"
-          text-color="white"
+          :to="{
+            name: 'reserve'
+          }"
+          >Profile</RouterLink
         >
-          routeName
-        </button>
-        <ProfileDropdown />
-        <LangDropdown />
       </NSpace>
     </div>
 
@@ -116,4 +109,9 @@ export default {
 
 <style scoped>
 @import url(../../assets/css/navbar.css);
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
 </style>

@@ -1,12 +1,11 @@
 <template>
   <NCard>
     <div>
-        <ParkingSpotFilterComponent></ParkingSpotFilterComponent>
+      <ParkingSpotFilterComponent></ParkingSpotFilterComponent>
     </div>
     <div class="gmap-container">
       <GMap :parkingSpots="allParkingSpots"></GMap>
     </div>
-   
   </NCard>
 </template>
 
@@ -29,8 +28,8 @@ export default {
     })
   },
 
- async created() {
-   await this.$store.dispatch('fetchParkingSpots')
+  async created() {
+    await this.$store.dispatch('fetchParkingSpots')
   }
 }
 </script>
