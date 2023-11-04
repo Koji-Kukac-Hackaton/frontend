@@ -4,7 +4,7 @@
       <div>
         <NSpace>
           <NText>Show only free spaces</NText>
-          <NSwitch :color="black" v-model:value="freeSpace"   />
+          <NSwitch :color="black" v-model:value="freeSpace" />
         </NSpace>
       </div>
       <div>
@@ -25,26 +25,26 @@
           <NSpace>
             <NText
               class="zone-text"
-              @click="pickedZone = 'Zone1'"
-              :class="{ 'zone-picked': pickedZone == 'Zone1' }"
+              @click="pickedZone = 'ZONE1'"
+              :class="{ 'zone-picked': pickedZone == 'ZONE1' }"
               >Zone 1</NText
             >
             <NText
               class="zone-text"
-              @click="pickedZone = 'Zone2'"
-              :class="{ 'zone-picked': pickedZone == 'Zone2' }"
+              @click="pickedZone = 'ZONE2'"
+              :class="{ 'zone-picked': pickedZone == 'ZONE2' }"
               >Zone 2</NText
             >
             <NText
               class="zone-text"
-              @click="pickedZone = 'Zone3'"
-              :class="{ 'zone-picked': pickedZone == 'Zone3' }"
+              @click="pickedZone = 'ZONE3'"
+              :class="{ 'zone-picked': pickedZone == 'ZONE3' }"
               >Zone 3</NText
             >
             <NText
               class="zone-text"
-              @click="pickedZone = 'Zone4'"
-              :class="{ 'zone-picked': pickedZone == 'Zone4' }"
+              @click="pickedZone = 'ZONE4'"
+              :class="{ 'zone-picked': pickedZone == 'ZONE4' }"
               >Zone 4</NText
             >
             <NText class="zone-text" @click="pickedZone = 0">X</NText>
@@ -87,7 +87,7 @@ export default {
   data() {
     return {
       valueDistance: [0],
-      valuePrice: [0,5],
+      valuePrice: [0, 5],
       freeSpace: false,
 
       pickedZone: 0

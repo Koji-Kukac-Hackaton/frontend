@@ -39,7 +39,7 @@ export const parkingSpotsModule = {
   },
   actions: {
     async fetchParkingSpots({ state, commit }) {
-      let parkingSpots = [];
+      let parkingSpots = []
       try {
         const response = await axios.get(`${baseURL}parking-spot/getAll`)
         parkingSpots = response.data
@@ -65,13 +65,7 @@ export const parkingSpotsModule = {
     async fetchParkingZonePrices({ commit }) {
       let parkingZonePrices = { ZONE1: 4.25, ZONE2: 3.34, ZONE3: 2.25, ZONE4: 1.31 }
 
-      let updatedParkingZonePrices = Object.keys(parkingZonePrices).reduce((newObj, key) => {
-        const newKey = key.charAt(0) + key.slice(1).toLowerCase()
-        newObj[newKey] = parkingZonePrices[key]
-        return newObj
-      }, {})
-
-      commit('setParkingZonePrices', updatedParkingZonePrices)
+      commit('setParkingZonePrices', parkingZonePrices)
     }
   }
 }

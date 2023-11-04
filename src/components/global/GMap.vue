@@ -32,7 +32,7 @@
       >
         <div>
           <p>Vodnikova ulica 10</p>
-          <p>{{parkingZonePrices[m.parkingSpotZone]}}€</p>
+          <p>{{ parkingZonePrices[m.parkingSpotZone] }}€</p>
           <NButton>Reserve</NButton>
         </div>
       </GMapInfoWindow>
