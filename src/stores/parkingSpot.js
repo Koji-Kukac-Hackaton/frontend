@@ -1,17 +1,34 @@
 export const parkingSpotsModule = {
   state: {
-    parkingSpots: []
+    parkingSpots: [],
+
+    //filters
+    filterPrice: 0,
+    filterFreeSpace: false,
+    filterZone: 0,
+    filterDistance: 0
   },
   getters: {
-    allParkingSpots: (state) => state.parkingSpots
+    allParkingSpots: (state) => state.parkingSpots,
+
+    getFilterPrice: (state) => state.filterPrice,
+    getFilterFreeSpace: (state) => state.filterFreeSpace,
+    getFilterZone: (state) => state.filterZone,
+    getFilterDistance: (state) => state.filterDistance
   },
   mutations: {
     setParkingSpots(state, parkingSpots) {
       state.parkingSpots = parkingSpots
+    },
+    setFilters(state, filters) {
+      state.filterPrice = filters.price
+      state.filterFreeSpace = filters.freeSpace
+      state.filterZone = filters.zone
+      state.filterDistance = filters.filterDistance
     }
   },
   actions: {
-    fetchParkingSpots({ commit }) {
+    async fetchParkingSpots({ state, commit }) {
       let parkingSpots = [
         {
           id: '986d1c84-7b38-45f1-b117-08dbdb851562',
@@ -5982,6 +5999,10 @@ export const parkingSpotsModule = {
           occupiedTimestamp: null
         }
       ]
+
+      if (state.filterFreeSpace) {
+        parkingSpots = parkingSpots.filter((spot) => !spot.occupied)
+      }
       commit('setParkingSpots', parkingSpots)
     }
   }
