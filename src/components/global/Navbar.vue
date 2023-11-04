@@ -1,0 +1,119 @@
+<template>
+  <div class="navbar">
+    <RouterLink class="navbar-title" to="/">ParkingSpotter</RouterLink>
+
+    <div class="navbar-end">
+      <!-- COMMENT -->
+      <NSpace class="flex-row" :size="[30, 0]">
+        <RouterLink
+          class="navbar-route"
+          :to="{
+            name: 'reserve'
+          }"
+          >routeName</RouterLink
+        >
+
+        <RouterLink
+          class="navbar-route"
+          :to="{
+            name: 'reserve'
+          }"
+          >routeName</RouterLink
+        >
+
+        <!-- NOT LOGGED IN -->
+        <button class="navbar-route" @click="$router.push({ name: 'reserve' })">routeName</button>
+
+        <button
+          class="navbar-route"
+          @click="$router.push({ name: 'reserve' })"
+          color="green"
+          text-color="white"
+        >
+          routeName
+        </button>
+        <ProfileDropdown />
+        <LangDropdown />
+      </NSpace>
+    </div>
+
+    <!-- HAMBURGER -->
+    <div id="nav-icon3" @click="toggleNav">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+    <!-- MOBILE -->
+    <div id="myNav" class="overlay">
+      <div class="overlay-content">
+        <RouterLink
+          class="navbar-route overlay-element"
+          @click="toggleNav"
+          :to="{
+            name: 'reserve'
+          }"
+          >routeName</RouterLink
+        >
+
+        <RouterLink
+          class="navbar-route overlay-element"
+          @click="toggleNav"
+          :to="{
+            name: 'reserve'
+          }"
+          >routeName</RouterLink
+        >
+
+        <RouterLink
+          class="navbar-route overlay-element"
+          @click="toggleNav"
+          :to="{
+            name: 'reserve'
+          }"
+          >routeName</RouterLink
+        >
+
+        <RouterLink
+          v-if="!loggedIn"
+          class="navbar-route overlay-element"
+          @click="toggleNav"
+          :to="{
+            name: 'reserve'
+          }"
+          >routeName</RouterLink
+        >
+
+        <ProfileDropdown class="navbar-route overlay-element" @click="toggleNav" />
+        <LangDropdown class="navbar-route overlay-element" />
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'GMap',
+  methods: {
+    toggleNav() {
+      document.getElementById('nav-icon3').classList.toggle('open')
+      if (this.showNav) {
+        document.getElementById('myNav').style.height = '0%'
+      } else {
+        document.getElementById('myNav').style.height = '100%'
+      }
+      this.showNav = !this.showNav
+    }
+  },
+  data() {
+    return {
+      showNav: false
+    }
+  }
+}
+</script>
+
+<style scoped>
+@import url(../../assets/css/navbar.css);
+</style>

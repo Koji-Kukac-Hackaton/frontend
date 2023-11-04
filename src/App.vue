@@ -1,4 +1,5 @@
 <template>
+  <Navbar></Navbar>
   <div class="app-container">
     <RouterView />
   </div>
@@ -6,6 +7,8 @@
 
 <script setup>
 import { RouterView } from 'vue-router'
+import Navbar from "./components/global/Navbar.vue"
+
 </script>
 
 <style scoped>
