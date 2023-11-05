@@ -36,7 +36,7 @@ export default {
 
 <style>
 .gmap-container {
-  height: 62vh;
+  height: 55vh;
   width: 100%;
 }
 </style>

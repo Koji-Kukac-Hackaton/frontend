@@ -18,5 +18,6 @@ import Navbar from './components/global/Navbar.vue'
 <style scoped>
 .app-container {
   height: 93.9vh;
+  background-color: #dde6f0;
 }
 </style>
