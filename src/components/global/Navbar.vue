@@ -23,7 +23,7 @@
         <RouterLink
           class="navbar-route"
           :to="{
-            name: 'reserve'
+            name: 'user-profile'
           }"
           >Profile</RouterLink
         >
