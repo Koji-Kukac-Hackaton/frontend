@@ -5,13 +5,13 @@
     <div class="navbar-end">
       <NSpace class="flex-row" :size="[30, 0]">
         <RouterLink
-        v-if="!isLoggedIn"
-        class="navbar-route"
-        :to="{
-          name: 'login'
-        }"
-        >Login</RouterLink
-      >
+          v-if="!isLoggedIn"
+          class="navbar-route"
+          :to="{
+            name: 'login'
+          }"
+          >Login</RouterLink
+        >
         <RouterLink
           class="navbar-route"
           :to="{
@@ -29,8 +29,7 @@
         >
 
         <RouterLink
-        v-if="isLoggedIn"
-
+          v-if="isLoggedIn"
           class="navbar-route"
           :to="{
             name: 'user-profile'
@@ -52,12 +51,22 @@
     <div id="myNav" class="overlay">
       <div class="overlay-content">
         <RouterLink
+          v-if="!isLoggedIn"
           class="navbar-route overlay-element"
           @click="toggleNav"
           :to="{
-            name: 'reserve'
+            name: 'login'
           }"
-          >routeName</RouterLink
+          >Login</RouterLink
+        >
+
+        <RouterLink
+          class="navbar-route overlay-element"
+          @click="toggleNav"
+          :to="{
+            name: 'home'
+          }"
+          >Home</RouterLink
         >
 
         <RouterLink
@@ -66,25 +75,17 @@
           :to="{
             name: 'reserve'
           }"
-          >routeName</RouterLink
+          >Reserve Parking</RouterLink
         >
 
         <RouterLink
+          v-if="isLoggedIn"
           class="navbar-route overlay-element"
           @click="toggleNav"
           :to="{
-            name: 'reserve'
+            name: 'user-profile'
           }"
-          >routeName</RouterLink
-        >
-
-        <RouterLink
-          class="navbar-route overlay-element"
-          @click="toggleNav"
-          :to="{
-            name: 'reserve'
-          }"
-          >routeName</RouterLink
+          >profile</RouterLink
         >
       </div>
     </div>
@@ -105,10 +106,10 @@ export default {
       this.showNav = !this.showNav
     }
   },
-  computed:{
+  computed: {
     isLoggedIn() {
       return this.$store.getters.isLoggedIn
-    },
+    }
   },
   data() {
     return {
