@@ -2,6 +2,7 @@
 export default {
   mounted() {
     this.$store.dispatch('connectWebSocket');
+    this.$store.dispatch('connectPriceWebSocket');
   },
   beforeDestroy() {
     this.$store.dispatch('disconnectWebSocket');
@@ -9,6 +10,9 @@ export default {
   computed: {
     parkingSpotEvents() {
       return this.$store.state.parkingSpotEvents;
+    },
+    prices() {
+      return this.$store.state.prices;
     }
   }
 }

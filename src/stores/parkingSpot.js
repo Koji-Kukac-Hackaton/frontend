@@ -52,7 +52,7 @@ export const parkingSpotsModule = {
         }
 
         try {
-          const response = await axios.post(`${baseURL}/parking-spot/radius`, data)
+          const response = await axios.post(`${baseURL}parking-spot/radius`, data)
           parkingSpots = response.data
         } catch (error) {
           console.error(error)
@@ -60,7 +60,7 @@ export const parkingSpotsModule = {
 
       } else {
         try {
-          const response = await axios.get(`${baseURL}/parking-spot/getAll`)
+          const response = await axios.get(`${baseURL}parking-spot/getAll`)
           parkingSpots = response.data
         } catch (error) {
           console.error(error)
@@ -85,7 +85,7 @@ export const parkingSpotsModule = {
     async fetchParkingZonePrices({ commit }) {
       let parkingZonePrices = {}
       try {
-        const response = await axios.get(`${baseURL}/price`)
+        const response = await axios.get(`${baseURL}price`)
         parkingZonePrices = response.data
       } catch (error) {
         console.error(error)
