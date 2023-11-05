@@ -9,7 +9,7 @@
           <NText>Password</NText>
           <NInput v-model:value="password" type="password" placeholder="********" :minlength="8" />
 
-          <NButton class="w-full my-4 login-btn" type="primary" @click="login">Login</NButton>
+          <NButton class="login-btn" type="primary" @click="login">Login</NButton>
           <div class="text-center w-full">
             <NText>
               Not registered?
@@ -52,6 +52,10 @@ export default {
   justify-content: center;
   align-items: center;
   height: 100%;
+}
+
+.login-btn {
+  width: 100%;
 }
 
 @media screen and (max-width: 500px) {

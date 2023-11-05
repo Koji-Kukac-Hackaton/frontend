@@ -5,6 +5,14 @@
     <div class="navbar-end">
       <NSpace class="flex-row" :size="[30, 0]">
         <RouterLink
+        v-if="!isLoggedIn"
+        class="navbar-route"
+        :to="{
+          name: 'login'
+        }"
+        >Login</RouterLink
+      >
+        <RouterLink
           class="navbar-route"
           :to="{
             name: 'reserve'
@@ -21,6 +29,8 @@
         >
 
         <RouterLink
+        v-if="isLoggedIn"
+
           class="navbar-route"
           :to="{
             name: 'user-profile'
@@ -94,6 +104,11 @@ export default {
       }
       this.showNav = !this.showNav
     }
+  },
+  computed:{
+    isLoggedIn() {
+      return this.$store.getters.isLoggedIn
+    },
   },
   data() {
     return {
