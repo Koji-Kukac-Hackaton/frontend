@@ -10,7 +10,7 @@
       <div>
         <NSpace vertical>
           <NText>Distance</NText>
-          <NSlider :color="black" v-model:value="valueDistance" :step="1" />
+          <NSlider :color="black" v-model:value="valueDistance" :step="250" :max="6000" />
         </NSpace>
       </div>
       <div>
@@ -90,7 +90,10 @@ export default {
       valuePrice: [0, 5],
       freeSpace: false,
 
-      pickedZone: 0
+      pickedZone: 0,
+
+      location: '',
+      nav: navigator.geolocation.getCurrentPosition(this.successLocation)
     }
   },
   mounted() {
@@ -105,12 +108,19 @@ export default {
         price: this.valuePrice,
         freeSpace: this.freeSpace,
         zone: this.pickedZone,
-        filterDistance: this.valueDistance
+        filterDistance: this.valueDistance,
+        filterDistanceLocation: this.location
       }
 
       this.$store.commit('setFilters', filters)
       this.$store.dispatch('fetchParkingSpots')
-    }
+    },
+    successLocation(position) {
+      this.location = {
+        latitude: position.coords.latitude,
+        longitude: position.coords.longitude
+      }
+    },
   }
 }
 </script>

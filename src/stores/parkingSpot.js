@@ -11,7 +11,8 @@ export const parkingSpotsModule = {
     filterPrice: 5,
     filterFreeSpace: false,
     filterZone: 0,
-    filterDistance: 0
+    filterDistance: 6000,
+    filterDistanceLocation: {}
   },
   getters: {
     allParkingSpots: (state) => state.parkingSpots,
@@ -34,17 +35,36 @@ export const parkingSpotsModule = {
       state.filterPrice = filters.price
       state.filterFreeSpace = filters.freeSpace
       state.filterZone = filters.zone
-      state.filterDistance = filters.filterDistance
+      ;(state.filterDistance = filters.filterDistance),
+        (state.filterDistanceLocation = filters.filterDistanceLocation)
     }
   },
   actions: {
     async fetchParkingSpots({ state, commit }) {
       let parkingSpots = []
-      try {
-        const response = await axios.get(`${baseURL}parking-spot/getAll`)
-        parkingSpots = response.data
-      } catch (error) {
-        console.error(error)
+      if (state.filterDistance!=6000) {
+        console.log(state.filterDistanceLocation)
+
+        const data = {
+          latitude: state.filterDistanceLocation.latitude, // Example latitude
+          longitude: state.filterDistanceLocation.longitude, // Example longitude
+          radius: state.filterDistance // Example radius in kilometers or miles, depending on your API
+        }
+
+        try {
+          const response = await axios.post(`${baseURL}/parking-spot/radius`, data)
+          parkingSpots = response.data
+        } catch (error) {
+          console.error(error)
+        }
+
+      } else {
+        try {
+          const response = await axios.get(`${baseURL}/parking-spot/getAll`)
+          parkingSpots = response.data
+        } catch (error) {
+          console.error(error)
+        }
       }
       if (state.filterFreeSpace) {
         parkingSpots = parkingSpots.filter((spot) => !spot.occupied)
@@ -65,7 +85,7 @@ export const parkingSpotsModule = {
     async fetchParkingZonePrices({ commit }) {
       let parkingZonePrices = {}
       try {
-        const response = await axios.get(`${baseURL}price`)
+        const response = await axios.get(`${baseURL}/price`)
         parkingZonePrices = response.data
       } catch (error) {
         console.error(error)
