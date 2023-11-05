@@ -1,14 +1,18 @@
 <script>
 export default {
   mounted() {
-    this.$store.dispatch('connectWebSocket')
+    this.$store.dispatch('connectWebSocket');
+    this.$store.dispatch('connectPriceWebSocket');
   },
-  beforeDestroy() {
+  beforeUnmount() {
     this.$store.dispatch('disconnectWebSocket')
   },
   computed: {
     parkingSpotEvents() {
-      return this.$store.state.parkingSpotEvents
+      return this.$store.state.parkingSpotEvents;
+    },
+    prices() {
+      return this.$store.state.prices;
     }
   }
 }
