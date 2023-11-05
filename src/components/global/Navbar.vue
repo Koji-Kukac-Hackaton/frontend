@@ -1,9 +1,18 @@
 <template>
   <div class="navbar">
     <RouterLink class="navbar-title" to="/">ParkingSpotter</RouterLink>
-
     <div class="navbar-end">
       <NSpace class="flex-row" :size="[30, 0]">
+        <RouterLink
+          v-if="Object.keys(reservation).length"
+          @click="toggleShowReservetion"
+          class="navbar-route reservation-info"
+          :to="{
+            name: 'reserve'
+          }"
+        >
+          Reservation info</RouterLink
+        >
         <RouterLink
           v-if="!isLoggedIn"
           class="navbar-route"
@@ -104,18 +113,24 @@ export default {
         document.getElementById('myNav').style.height = '100%'
       }
       this.showNav = !this.showNav
+    },
+    toggleShowReservetion(){
+        this.$store.commit('setShowReservationPopup', true);
     }
   },
   computed: {
     isLoggedIn() {
       return this.$store.getters.isLoggedIn
+    },
+    reservation() {
+      return this.$store.getters.getReservation
     }
   },
   data() {
     return {
       showNav: false
     }
-  }
+  },
 }
 </script>
 

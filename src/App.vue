@@ -13,6 +13,7 @@
 import { RouterView } from 'vue-router'
 import { NDialogProvider, NMessageProvider } from 'naive-ui'
 import Navbar from './components/global/Navbar.vue'
+
 </script>
 
 <style scoped>

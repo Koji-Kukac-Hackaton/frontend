@@ -7,12 +7,16 @@ export const userModule = {
   state: {
     name: '',
     email: '',
+    reservation: {},
+    showReservationPopup: false,
     jwtToken: JSON.parse(localStorage.getItem('token'))
   },
   getters: {
     isLoggedIn: (state) => !!state.jwtToken,
     userName: (state) => state.name,
     userEmail: (state) => state.email,
+    getReservation: (state) => state.reservation,
+    showReservationPopup: (state) => state.showReservationPopup,
 
     getJWT: (state) => state.jwtToken
   },
@@ -22,6 +26,12 @@ export const userModule = {
       state.email = userData.email
       state.jwtToken = userData.jwtToken
     },
+    setReservation(state, reservation) {
+      state.reservation = reservation
+    },
+    setShowReservationPopup(state, showReservationPopup) {
+        state.showReservationPopup = showReservationPopup
+      },
     clearUser(state) {
       state.name = ''
       state.email = ''
@@ -67,6 +77,10 @@ export const userModule = {
     async logout({ commit }) {
       commit('clearUser')
       delete axios.defaults.headers.common['Authorization']
+    },
+    setReservation({ commit },reservation) {
+        commit('setReservation',reservation)
+      
     }
   }
 }

@@ -69,6 +69,9 @@ export default {
     NButton
   },
   computed: {
+    reservation() {
+      return this.$store.getters.getReservation
+    },
     filterPrice() {
       return this.$store.getters.getFilterPrice
     },

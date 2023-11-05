@@ -33,6 +33,7 @@
         <div>
           <p>{{ m.parkingSpotZone }}</p>
           <p>{{ parkingZonePrices[m.parkingSpotZone] }}€</p>
+          <NSpace vertical>
           <NButton ghost type="warning" @click="toggleOverlay">Occupancy Propability ></NButton>
 
           <NButton
@@ -40,10 +41,15 @@
             ghost
             color="#0b61ab"
             @click="
-              handleParkingDialog(m.id, m.parkingSpotZone, parkingZonePrices[m.parkingSpotZone])
+              handleParkingDialog(
+                m.id,
+                m.parkingSpotZone,
+                parkingZonePrices[m.parkingSpotZone],
+                m.position
+              )
             "
             >Reserve ></NButton
-          >
+          ></NSpace>
         </div>
       </GMapInfoWindow>
     </GMapMarker>
@@ -58,7 +64,7 @@
 </template>
 
 <script>
-import { NButton } from 'naive-ui'
+import { NButton, NSpace } from 'naive-ui'
 import redCircle from '../../assets/icons/red-circle-icon.svg'
 import greenCircle from '../../assets/icons/green-circle-icon.svg'
 import blueCircle from '../../assets/icons/blue-circle-icon.svg'
@@ -124,13 +130,17 @@ export default {
       this.ModalID = id
       this.showModal = true
     },
-    handleParkingDialog(id, zone, price) {
+    handleParkingDialog(id, zone, price, position) {
       this.dialog.info({
         title: 'Reserve Parking',
         content: `Are you sure you want to reserve parking in ${zone} for the price of ${price}€?`,
         positiveText: 'Yes',
         negativeText: 'No',
         onPositiveClick: async () => {
+          let reservation = { id, zone, price, position }
+
+          await this.$store.dispatch('setReservation', reservation)
+
           const baseURL = import.meta.env.VITE_BACKEND_LINK
 
           try {
@@ -148,73 +158,23 @@ export default {
             const response = await axios.post(`${baseURL}parking-spot/reserve`, data, { headers })
 
             console.log(response.data)
+            this.message.success('Parking is reserved')
+
           } catch (error) {
             console.error(error)
             throw error
           }
-          this.message.success('Parking is reserved')
         },
         onNegativeClick: () => {
           this.message.error('Parking not reserved')
         }
       })
-    },
-    fetchParkingData() {
-      const baseURL = import.meta.env.VITE_BACKEND_LINK
-
-      async function getParkingData() {
-        const response = await fetch(`${baseURL}demand-history`)
-        const data = await response.json()
-        return data
-      }
-      getParkingData().then((data) => {
-        this.parkingData = this.processParkingData(data)
-      })
-    },
-    processParkingData(rawData) {
-      // Object to hold the data structured by zone and hour
-      let occupancyByZoneAndHour = {
-        ZONE1: {},
-        ZONE2: {},
-        ZONE3: {},
-        ZONE4: {}
-      }
-      // Initialize the structure for each hour in each zone
-      for (let zone in occupancyByZoneAndHour) {
-        for (let hour = 0; hour < 24; hour++) {
-          occupancyByZoneAndHour[zone][hour] = { sum: 0, count: 0, average: 0 }
-        }
-      }
-      // Process each data entry
-      rawData.forEach((item) => {
-        // Extract the hour from the timestamp, and adjust if necessary
-        let date = new Date(item.timestamp)
-        let hour = date.getMinutes()
-        let minute = date.getMinutes()
-        if (minute >= 30) {
-          hour = minute - 30
-        }
-        // Accumulate data for the specific zone and hour
-        let zoneData = occupancyByZoneAndHour[item.parkingSpotZone][hour]
-        zoneData.sum += item.occupiedPercentage
-        zoneData.count++
-      })
-      // Calculate the average for each hour in each zone
-      for (let zone in occupancyByZoneAndHour) {
-        for (let hour in occupancyByZoneAndHour[zone]) {
-          let zoneHourData = occupancyByZoneAndHour[zone][hour]
-          if (zoneHourData.count > 0) {
-            zoneHourData.average = zoneHourData.sum / zoneHourData.count
-          }
-        }
-      }
-      return occupancyByZoneAndHour
     }
   },
   async created() {
     await this.$store.dispatch('fetchParkingZonePrices')
   },
-  components: { NButton, ProbabilityChart }
+  components: { NButton, ProbabilityChart, NSpace }
 }
 </script>
 
@@ -224,19 +184,18 @@ export default {
 }
 
 .overlay {
-  position: fixed; /* Fixed position to cover the whole screen */
+  position: fixed; 
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+  background-color: rgba(0, 0, 0, 0.5); 
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1000; /* High z-index to ensure it's above other content */
+  z-index: 1000;
 }
 
-/* Styles for the content inside the overlay */
 .content {
   background: white;
   padding: 20px;
