@@ -4,13 +4,13 @@
       <div>
         <NSpace>
           <NText>Show only free spaces</NText>
-          <NSwitch :color="black" v-model:value="freeSpace" />
+          <NSwitch v-model:value="freeSpace" />
         </NSpace>
       </div>
       <div>
         <NSpace vertical>
           <NText>Distance</NText>
-          <NSlider :color="black" v-model:value="valueDistance" :step="250" :max="6000" />
+          <NSlider v-model:value="valueDistance" :step="250" :max="6000" />
         </NSpace>
       </div>
       <div>

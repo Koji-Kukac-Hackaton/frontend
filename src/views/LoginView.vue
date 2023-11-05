@@ -9,7 +9,7 @@
           <NText>Password</NText>
           <NInput v-model:value="password" type="password" placeholder="********" :minlength="8" />
 
-          <NButton class="login-btn" type="primary" @click="login">Login</NButton>
+          <NButton color="#0b61ab" class="login-btn" @click="login">Login</NButton>
           <div class="text-center w-full">
             <NText>
               Not registered?

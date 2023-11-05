@@ -1,8 +1,5 @@
 import WebSocketAPI from '../services/WebSocketAPI.js';
 
-// ... rest of the code
-
-
 export const webSocketModule = {
         state: {
           parkingSpotEvents: [],
@@ -20,11 +17,9 @@ export const webSocketModule = {
           connectWebSocket({ commit }) {
             WebSocketAPI.connect(
               message => {
-                console.log("ParkingSpotEvent:", message.body);
                 commit('ADD_EVENT', JSON.parse(message.body));
               },
               message => {
-                console.log("Price:", message.body);
                 commit('ADD_PRICE', JSON.parse(message.body));
               }
             );
