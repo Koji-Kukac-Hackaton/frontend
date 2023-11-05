@@ -1,9 +1,7 @@
 import axios from 'axios'
 const baseURL = import.meta.env.VITE_BACKEND_LINK
-import createPersistedState from 'vuex-persistedstate'
 
 export const userModule = {
-  plugins: [createPersistedState()],
   state: {
     name: '',
     email: '',
