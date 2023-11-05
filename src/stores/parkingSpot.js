@@ -63,8 +63,13 @@ export const parkingSpotsModule = {
       commit('setParkingSpots', parkingSpots)
     },
     async fetchParkingZonePrices({ commit }) {
-      let parkingZonePrices = { ZONE1: 4.25, ZONE2: 3.34, ZONE3: 2.25, ZONE4: 1.31 }
-
+        let parkingZonePrices = {}
+        try {
+          const response = await axios.get(`${baseURL}price`)
+          parkingZonePrices = response.data
+        } catch (error) {
+          console.error(error)
+        }
       commit('setParkingZonePrices', parkingZonePrices)
     }
   }

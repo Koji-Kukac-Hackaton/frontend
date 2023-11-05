@@ -31,9 +31,9 @@
         :opened="openedMarkerID === m.id"
       >
         <div>
-          <p>Vodnikova ulica 10</p>
+          <p>{{ m.parkingSpotZone }}</p>
           <p>{{ parkingZonePrices[m.parkingSpotZone] }}€</p>
-          <NButton>Reserve</NButton>
+          <NButton ghost color="#0b61ab">Reserve</NButton>
         </div>
       </GMapInfoWindow>
     </GMapMarker>
