@@ -36,7 +36,24 @@ export default {
   },
   data() {
     return {
-      showNav: false
+      showNav: false,
+      email: '',
+      password: ''
+    }
+  },
+  methods: {
+    async login() {
+      const credentials = {
+        email: this.email,
+        password: this.password
+      }
+
+      try {
+        await this.$store.dispatch('login', credentials)
+        this.$router.push({ name: 'reserve' })
+      } catch (error) {
+        console.error('Login failed:', error)
+      }
     }
   }
 }

@@ -1,5 +1,4 @@
 import axios from 'axios'
-const baseURL = import.meta.env.VITE_BACKEND_LINK
 
 export const userModule = {
   state: {
@@ -25,19 +24,19 @@ export const userModule = {
     }
   },
   actions: {
-    async login({ commit }, credentials) {
+    async login({ commit } /*credentials*/) {
       try {
-        const response = await axios.post(`${baseURL}/login`, credentials)
+        // const response = await axios.post(`${baseURL}/login`, credentials)
         const userData = {
-          name: response.data.name,
-          email: response.data.email,
-          jwtToken: response.data.jwtToken
+          name: 'Test User', //response.data.name,
+          email: 'testuser@gmail.com', //response.data.email,
+          jwtToken: 'jwtTokenjwtTokenjwtTokenjwtTokens' //response.data.jwtToken
         }
         commit('setUser', userData)
         axios.defaults.headers.common['Authorization'] = `Bearer ${userData.jwtToken}`
       } catch (error) {
         console.error(error)
-        throw error 
+        throw error
       }
     },
     async logout({ commit }) {

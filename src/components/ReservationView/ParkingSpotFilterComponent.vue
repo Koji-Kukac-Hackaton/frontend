@@ -120,7 +120,7 @@ export default {
         latitude: position.coords.latitude,
         longitude: position.coords.longitude
       }
-    },
+    }
   }
 }
 </script>

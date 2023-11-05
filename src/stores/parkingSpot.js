@@ -42,7 +42,7 @@ export const parkingSpotsModule = {
   actions: {
     async fetchParkingSpots({ state, commit }) {
       let parkingSpots = []
-      if (state.filterDistance!=6000) {
+      if (state.filterDistance != 6000) {
         console.log(state.filterDistanceLocation)
 
         const data = {
@@ -57,7 +57,6 @@ export const parkingSpotsModule = {
         } catch (error) {
           console.error(error)
         }
-
       } else {
         try {
           const response = await axios.get(`${baseURL}parking-spot/getAll`)
