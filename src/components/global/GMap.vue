@@ -98,7 +98,7 @@ export default {
     openMarker(id) {
       this.openedMarkerID = id
     },
-    handleParkingDialog(zone,price) {
+    handleParkingDialog(zone, price) {
       this.dialog.info({
         title: 'Reserve Parking',
         content: `Are you sure you want to reserve parking in ${zone} for the price of ${price}€?`,
