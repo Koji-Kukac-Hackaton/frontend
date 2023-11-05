@@ -69,7 +69,6 @@
         >
 
         <RouterLink
-          v-if="!loggedIn"
           class="navbar-route overlay-element"
           @click="toggleNav"
           :to="{
@@ -78,8 +77,6 @@
           >routeName</RouterLink
         >
 
-        <ProfileDropdown class="navbar-route overlay-element" @click="toggleNav" />
-        <LangDropdown class="navbar-route overlay-element" />
       </div>
     </div>
   </div>
@@ -87,7 +84,7 @@
 
 <script>
 export default {
-  name: 'GMap',
+  name: 'NavBar',
   methods: {
     toggleNav() {
       document.getElementById('nav-icon3').classList.toggle('open')

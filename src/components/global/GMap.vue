@@ -33,7 +33,12 @@
         <div>
           <p>{{ m.parkingSpotZone }}</p>
           <p>{{ parkingZonePrices[m.parkingSpotZone] }}€</p>
-          <NButton ghost color="#0b61ab">Reserve</NButton>
+          <NButton
+            ghost
+            color="#0b61ab"
+            @click="handleParkingDialog(m.parkingSpotZone, parkingZonePrices[m.parkingSpotZone])"
+            >Reserve</NButton
+          >
         </div>
       </GMapInfoWindow>
     </GMapMarker>
@@ -45,6 +50,7 @@ import { NButton } from 'naive-ui'
 import redCircle from '../../assets/icons/red-circle-icon.svg'
 import greenCircle from '../../assets/icons/green-circle-icon.svg'
 import blueCircle from '../../assets/icons/blue-circle-icon.svg'
+import { useMessage, useDialog } from 'naive-ui'
 
 export default {
   name: 'GMap',
@@ -77,6 +83,8 @@ export default {
       redCircle: redCircle,
       greenCircle: greenCircle,
       blueCircle: blueCircle,
+      message: useMessage(),
+      dialog: useDialog(),
       nav: navigator.geolocation.getCurrentPosition(this.successLocation)
     }
   },
@@ -89,6 +97,20 @@ export default {
     },
     openMarker(id) {
       this.openedMarkerID = id
+    },
+    handleParkingDialog(zone,price) {
+      this.dialog.info({
+        title: 'Reserve Parking',
+        content: `Are you sure you want to reserve parking in ${zone} for the price of ${price}€?`,
+        positiveText: 'Yes',
+        negativeText: 'No',
+        onPositiveClick: () => {
+          this.message.success('Parking is reserved')
+        },
+        onNegativeClick: () => {
+          this.message.error('Parking not reserved')
+        }
+      })
     }
   },
   async created() {
