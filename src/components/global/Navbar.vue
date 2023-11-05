@@ -114,8 +114,8 @@ export default {
       }
       this.showNav = !this.showNav
     },
-    toggleShowReservetion(){
-        this.$store.commit('setShowReservationPopup', true);
+    toggleShowReservetion() {
+      this.$store.commit('setShowReservationPopup', true)
     }
   },
   computed: {
@@ -130,7 +130,7 @@ export default {
     return {
       showNav: false
     }
-  },
+  }
 }
 </script>
 

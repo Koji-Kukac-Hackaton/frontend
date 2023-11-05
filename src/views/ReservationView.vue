@@ -14,9 +14,7 @@
         map-type-id="terrain"
         style="width: 100%; height: 100%"
       >
-        <GMapMarker
-          :position="{ lat: reservation.position.lat, lng: reservation.position.lng }"
-        />
+        <GMapMarker :position="{ lat: reservation.position.lat, lng: reservation.position.lng }" />
       </GMapMap>
 
       <NButton ghost type="warning" @click="close">Close</NButton>
@@ -30,7 +28,7 @@ import ParkingSpotComponent from '../components/ReservationView/ParkingSpotCompo
 export default {
   name: 'ReservationView',
   components: {
-        ParkingSpotComponent,
+    ParkingSpotComponent,
     NButton
   },
   computed: {

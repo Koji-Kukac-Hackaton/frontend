@@ -34,22 +34,23 @@
           <p>{{ m.parkingSpotZone }}</p>
           <p>{{ parkingZonePrices[m.parkingSpotZone] }}€</p>
           <NSpace vertical>
-          <NButton ghost type="warning" @click="toggleOverlay">Occupancy Propability ></NButton>
+            <NButton ghost type="warning" @click="toggleOverlay">Occupancy Propability ></NButton>
 
-          <NButton
-            v-if="!m.occupied"
-            ghost
-            color="#0b61ab"
-            @click="
-              handleParkingDialog(
-                m.id,
-                m.parkingSpotZone,
-                parkingZonePrices[m.parkingSpotZone],
-                m.position
-              )
-            "
-            >Reserve ></NButton
-          ></NSpace>
+            <NButton
+              v-if="!m.occupied"
+              ghost
+              color="#0b61ab"
+              @click="
+                handleParkingDialog(
+                  m.id,
+                  m.parkingSpotZone,
+                  parkingZonePrices[m.parkingSpotZone],
+                  m.position
+                )
+              "
+              >Reserve ></NButton
+            ></NSpace
+          >
         </div>
       </GMapInfoWindow>
     </GMapMarker>
@@ -159,7 +160,6 @@ export default {
 
             console.log(response.data)
             this.message.success('Parking is reserved')
-
           } catch (error) {
             console.error(error)
             throw error
@@ -184,12 +184,12 @@ export default {
 }
 
 .overlay {
-  position: fixed; 
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5); 
+  background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
   align-items: center;

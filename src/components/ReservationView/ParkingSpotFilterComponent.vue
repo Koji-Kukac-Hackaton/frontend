@@ -52,7 +52,9 @@
         </NSpace>
       </div>
     </div>
-    <NButton color="#4470c8" @click="filter">Filter</NButton>
+    <div class="btn-flex">
+      <NButton color="#4470c8" @click="filter">Filter</NButton>
+    </div>
   </NCard>
 </template>
 
@@ -147,5 +149,10 @@ export default {
 .zone-picked {
   background-color: #4470c8;
   color: white;
+}
+
+.btn-flex {
+  display: flex;
+  justify-content: flex-end;
 }
 </style>

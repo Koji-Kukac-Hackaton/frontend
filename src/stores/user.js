@@ -28,8 +28,8 @@ export const userModule = {
       state.reservation = reservation
     },
     setShowReservationPopup(state, showReservationPopup) {
-        state.showReservationPopup = showReservationPopup
-      },
+      state.showReservationPopup = showReservationPopup
+    },
     clearUser(state) {
       state.name = ''
       state.email = ''
@@ -76,9 +76,8 @@ export const userModule = {
       commit('clearUser')
       delete axios.defaults.headers.common['Authorization']
     },
-    setReservation({ commit },reservation) {
-        commit('setReservation',reservation)
-      
+    setReservation({ commit }, reservation) {
+      commit('setReservation', reservation)
     }
   }
 }

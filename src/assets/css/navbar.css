@@ -221,14 +221,14 @@
   }
 }
 
-.reservation-info{
-    padding: 0px 3px;
-    border-radius: 20px;
-    background-color: white;
-    color: #0b61ab;
+.reservation-info {
+  padding: 0px 3px;
+  border-radius: 20px;
+  background-color: white;
+  color: #0b61ab;
 }
 
-.reservation-info:hover{
-    background-color: white;
-    color: #0b61ab;
+.reservation-info:hover {
+  background-color: white;
+  color: #0b61ab;
 }
