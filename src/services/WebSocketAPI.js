@@ -38,5 +38,3 @@ const WebSocketAPI = {
 };
 
 export default WebSocketAPI;
-
-      

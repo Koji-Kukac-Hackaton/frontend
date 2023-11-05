@@ -1,9 +1,9 @@
 <template>
-  <canvas ref="canvasRef" style="width: 400px; height: 400px; background-color: #fff"></canvas>
+  <canvas ref="canvasRef" style="width: 100%; height: 100%; background-color: #fff"></canvas>
 </template>
 
 <script setup>
-import { ref, onMounted, watch, onBeforeUnmount } from 'vue'
+import { ref, onMounted, onBeforeUnmount } from 'vue'
 import {
   Chart,
   CategoryScale,
@@ -38,9 +38,6 @@ Chart.register(
 
 const canvasRef = ref(null)
 let chart = null
-
-const parkingDataByZone = ref({}) // holds the parking data by zone
-const chartData = ref({ datasets: [] })
 
 function createChart(data) {
   const ctx = canvasRef.value.getContext('2d')
@@ -119,6 +116,7 @@ const fetchProbabilityData = async () => {
     const response = await axios.get(
       `${baseURL}parking-spot-events/cae1f4fd-5158-45ee-b34e-08dbdb851562`
     )
+    console.log(response)
     return processProbabilityData(response.data) // Process the data once received
   } catch (error) {
     console.error('Error fetching data:', error)

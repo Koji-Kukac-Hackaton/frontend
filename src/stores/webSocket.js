@@ -1,4 +1,4 @@
-import WebSocketAPI from '../services/WebSocketAPI.js';
+import WebSocketAPI from '../services/WebSocketAPI.js'
 
 // ... existing imports
 

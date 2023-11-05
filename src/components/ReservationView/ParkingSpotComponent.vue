@@ -1,5 +1,5 @@
 <template>
-  <NCard>
+  <NCard class="desktop">
     <div>
       <ParkingSpotFilterComponent></ParkingSpotFilterComponent>
     </div>
@@ -7,11 +7,17 @@
       <GMap :parkingSpots="allParkingSpots"></GMap>
     </div>
   </NCard>
+  <div class="mobile">
+    <div class="gmap-container-mobile">
+      <GMap :parkingSpots="allParkingSpots"></GMap>
+      <NText class="format-button">F</NText>
+    </div>
+  </div>
   <WSComponent></WSComponent>
 </template>
 
 <script>
-import { NCard } from 'naive-ui'
+import { NCard, NText } from 'naive-ui'
 import { mapGetters } from 'vuex'
 import GMap from '../global/GMap.vue'
 import ParkingSpotFilterComponent from './ParkingSpotFilterComponent.vue'
@@ -23,7 +29,8 @@ export default {
     NCard,
     GMap,
     ParkingSpotFilterComponent,
-    WSComponent
+    WSComponent,
+    NText
   },
   computed: {
     ...mapGetters({
@@ -41,5 +48,29 @@ export default {
 .gmap-container {
   height: 55vh;
   width: 100%;
+}
+
+.gmap-container-mobile {
+  height: 90vh;
+  width: 100%;
+}
+
+@media (min-width: 540px) {
+  .desktop {
+    display: block;
+  }
+  .mobile {
+    display: none;
+  }
+}
+
+@media (max-width: 539px) {
+  .desktop {
+    display: none;
+  }
+  .mobile {
+    position: relative;
+    display: block;
+  }
 }
 </style>

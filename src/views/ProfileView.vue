@@ -1,14 +1,14 @@
 <template>
   <div class="container">
-    <ProbabilityChart :data="parkingData"></ProbabilityChart>
+    <OccupancyChart></OccupancyChart>
   </div>
 </template>
 
 <script>
-import ProbabilityChart from '../components/analytics/ProbabilityChart.vue'
+import OccupancyChart from '../components/analytics/OccupancyChart.vue'
 export default {
   components: {
-    ProbabilityChart
+    OccupancyChart
   },
   data() {
     return {
@@ -78,3 +78,13 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.robabilityChart-container {
+  height: 60%;
+  width: 60%;
+}
+.container {
+  margin-top: 60px;
+}
+</style>
