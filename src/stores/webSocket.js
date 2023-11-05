@@ -17,9 +17,11 @@ export const webSocketModule = {
           connectWebSocket({ commit }) {
             WebSocketAPI.connect(
               message => {
+                console.log(message.body);
                 commit('ADD_EVENT', JSON.parse(message.body));
               },
               message => {
+                console.log(message.body);
                 commit('ADD_PRICE', JSON.parse(message.body));
               }
             );
