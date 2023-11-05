@@ -7,6 +7,7 @@
       <GMap :parkingSpots="allParkingSpots"></GMap>
     </div>
   </NCard>
+  <WSComponent></WSComponent>
 </template>
 
 <script>
@@ -14,13 +15,15 @@ import { NCard } from 'naive-ui'
 import { mapGetters } from 'vuex'
 import GMap from '../global/GMap.vue'
 import ParkingSpotFilterComponent from './ParkingSpotFilterComponent.vue'
+import WSComponent from '../global/WSComponent.vue'
 
 export default {
   name: 'ReservationView',
   components: {
     NCard,
     GMap,
-    ParkingSpotFilterComponent
+    ParkingSpotFilterComponent,
+    WSComponent
   },
   computed: {
     ...mapGetters({
