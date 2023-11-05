@@ -15,7 +15,7 @@
         <RouterLink
           class="navbar-route"
           :to="{
-            name: 'reserve'
+            name: 'home'
           }"
           >Home</RouterLink
         >

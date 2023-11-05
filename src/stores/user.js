@@ -1,16 +1,20 @@
 import axios from 'axios'
 const baseURL = import.meta.env.VITE_BACKEND_LINK
+import createPersistedState from 'vuex-persistedstate'
 
 export const userModule = {
+  plugins: [createPersistedState()],
   state: {
     name: '',
     email: '',
-    jwtToken: ''
+    jwtToken: JSON.parse(localStorage.getItem('token'))
   },
   getters: {
     isLoggedIn: (state) => !!state.jwtToken,
     userName: (state) => state.name,
-    userEmail: (state) => state.email
+    userEmail: (state) => state.email,
+
+    getJWT: (state) => state.jwtToken
   },
   mutations: {
     setUser(state, userData) {
@@ -35,6 +39,9 @@ export const userModule = {
           email: credentials.email,
           jwtToken: response.data
         }
+
+        localStorage.setItem('token', JSON.stringify(userData.jwtToken))
+
         commit('setUser', userData)
         axios.defaults.headers.common['Authorization'] = `Bearer ${userData.jwtToken}`
       } catch (error) {

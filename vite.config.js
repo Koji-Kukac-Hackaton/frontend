@@ -16,6 +16,15 @@ export default defineConfig({
   },
   server: {
     host: 'localhost',
-    port: 3000
-  },
+    port: 3001,
+    proxy: {
+      '/api': {
+        target: 'https://codebooq-back-fa7f9a51e2d2.herokuapp.com/',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/api': ''
+        }
+      }
+    }
+  }
 })
